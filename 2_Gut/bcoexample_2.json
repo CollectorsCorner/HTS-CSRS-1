@@ -1,10 +1,11 @@
 {
     "id": "obj.1276", 
     "name": "Healthy human [taxID:9606] fecal [UBERON:0001988] metagenomic diversity", 
+    "title": "Gut Metagenomic Analysis", 
     "version": "1.2", 
     "createdby": "hadley_king@gwmail.gwu.edu", 
     "created": "Jan 26, 2017 16:35:29", 
-    "modified": "May 11, 2017 11:43:42", 
+    "modified": "Jun 22, 2017 15:13:31", 
     "digital_signature": "QSEQa6HNzERVIMONZWEj", 
     "verification_status": "unreviewed", 
     "publication_status": "draft", 
@@ -23,9 +24,9 @@
     ], 
     "description_domain": {
         "keywords": [
-            "metagenome", 
             "metagenomic analysis", 
-            "fecal"
+            "fecal", 
+            "gut metagenome"
         ], 
         "xref": [
             "UBERON:0001988", 
@@ -33,37 +34,37 @@
         ], 
         "pipeline_steps": [
             {
-                "tool_name": "HIVE_CensuScope", 
-                "tool_desc": "Detect taxonomic composition of a metagenomic data set.", 
+                "tool_name": "HIVE-CensuScope", 
+                "tool_desc": "Detects taxonomic composition of a metagenomic data set", 
                 "tool_version": "1.3", 
-                "tool_package": "null", 
+                "tool_package": "HIVE", 
                 "step_number": "1", 
                 "input_uri_list": [
-                    "hive://nuc-read/514683", 
-                    "hive://nuc-read/514682", 
-                    "hive://genome/513957"
+                    "https://hive.biochemistry.gwu.edu/data/nuc-read/514683", 
+                    "https://hive.biochemistry.gwu.edu/data/nuc-read/514682", 
+                    "https://hive.biochemistry.gwu.edu/data/genome/513957"
                 ], 
                 "output_uri_list": [
-                    "hive:///data/524669/dnaAccessionBasedResult.csv"
+                    "https://hive.biochemistry.gwu.edu/data/524669/dnaAccessionBasedResult.csv"
                 ]
             }, 
             {
-                "tool_name": "HIVE_hexagon", 
+                "tool_name": "HIVE-hexagon", 
                 "tool_desc": "Alignment of reads to a set of references", 
                 "tool_version": "1.3", 
-                "tool_package": "null", 
+                "tool_package": "HIVE", 
                 "step_number": "2", 
                 "input_uri_list": [
+                    "https://hive.biochemistry.gwu.edu/data/524669/dnaAccessionBasedResult.csv", 
                     "https://www.ncbi.nlm.nih.gov/nuccore/CP000139.1", 
                     "https://www.ncbi.nlm.nih.gov/nuccore/FP929042.1", 
                     "https://www.ncbi.nlm.nih.gov/nuccore/FP929046.1", 
                     "https://www.ncbi.nlm.nih.gov/nuccore/FP929045.1", 
                     "https://www.ncbi.nlm.nih.gov/nuccore/FP929043.1", 
-                    "https://www.ncbi.nlm.nih.gov/nuccore/FP929048.1", 
-                    "hive:///data/524669/dnaAccessionBasedResult.csv"
+                    "https://www.ncbi.nlm.nih.gov/nuccore/FP929048.1"
                 ], 
                 "output_uri_list": [
-                    "hive://data/524569/alCount-Unalignedo524569-alCount--1.csv"
+                    "https://hive.biochemistry.gwu.edu/data/524569/alCount-Unalignedo524569-alCount--1.csv"
                 ]
             }
         ]
@@ -74,9 +75,14 @@
         "platform": "HIVE", 
         "driver": "python_v2.7.13", 
         "prerequisites": [
-            "{\"name\":\"HIVE_censuscope\", \"version\": \"1.3\"},", 
-            "{\"name\":\"HIVE_hexagon\", \"version\": \"1.3\"}"
-        ]
+            "name:HIVE-censuscope, version:1.3", 
+            "name:HIVE-hexagon, version:1.3"
+        ], 
+        "access_prerequisites": [
+            "url:http://eutils.ncbi.nlm.nih.gov/entrez/eutils", 
+            "name:access to e-utils"
+        ], 
+        "script_type": "URI"
     }, 
     "parametric_domain": {
         "complexityRefEntropy": "1.2 - reluctant", 
@@ -100,7 +106,7 @@
             "https://www.ncbi.nlm.nih.gov/nuccore/FP929045.1", 
             "https://www.ncbi.nlm.nih.gov/nuccore/FP929043.1", 
             "https://www.ncbi.nlm.nih.gov/nuccore/FP929048.1", 
-            "hive://genome/513957"
+            "https://hive.biochemistry.gwu.edu/data/genome/513957"
         ], 
         "input_uri_list": [
             "https://hive.biochemistry.gwu.edu/nuc-read/514683", 
@@ -111,5 +117,11 @@
             "https://hive.biochemistry.gwu.edu/data/524569/Unaligned Reads (HIVE_ID).fasta", 
             "https://hive.biochemistry.gwu.edu/data/524569/alCount-Unalignedo524569-alCount--1.csv"
         ]
-    }
+    }, 
+    "error_domain": [
+        "error_domain:", 
+        "empirical_error:false negative alignment hits:<0.0010", 
+        "algorithmic_error:false positive mutation calls discovery:<0.0005"
+    ]
 }
+
