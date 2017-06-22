@@ -5,12 +5,12 @@
     "version": "1.0", 
     "createdby": "krista.michelle.smith7@gmail.com", 
     "created": "Feb 01, 2017 15:55:11", 
-    "modified": "Jun 16, 2017 13:35:36", 
+    "modified": "Jun 22, 2017 15:26:15", 
     "digital_signature": "z0d0ut7l66q4culk3fdy", 
     "verification_status": "unreviewed", 
     "publication_status": "draft", 
     "usability_domain": [
-        "Screening of cell culture supernatants from Vero cells[cellosaurus:CVCL_0059] for viral[taxID:10239] contamination using a custom viral database"
+        "Screening of cell culture supernatants from Vero cells [cellosaurus:CVCL_0059] for viral [taxID:10239] contamination using a custom viral database"
     ], 
     "authors": [
         {
@@ -180,7 +180,9 @@
         ]
     }, 
     "error_domain": [
-        "false negative discovery < 0.10", 
-        "false positive discovery < 0.05"
+        "error_domain:", 
+        "empirical_error: false negative alignment hits:<0.0010", 
+        "algorithmic_error: false positive mutation calls discovery:<0.0005"
     ]
 }
+
